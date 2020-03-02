@@ -73,8 +73,18 @@
                       }
 
                       echo '
-                      <td>'.$value['perfil'].'</td>
-                      <td><button class="btn btn-success btn-xs">Activado</button></td>
+                      <td>'.$value['perfil'].'</td>';
+
+                      if ($value['estado']!= 0) {
+
+                        echo ' <td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value['id'].'" estadoUsuario = "0">Activado</button></td>';
+                        
+                      }else{
+                        echo ' <td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value['id'].'"estadoUsuario = "1">Desactivado</button></td>';
+                      }
+                     
+
+                      echo '
                       <td>'.$value['ultimo_login'].'</td>
                       <td>
                         
@@ -155,7 +165,7 @@
             
             <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
-            <input class="form-control input-lg" type="txt" name="nuevoUsuario" placeholder="Ingresar Usuario" required>
+            <input class="form-control input-lg" type="txt" id="nuevoUsuario" name="nuevoUsuario"  placeholder="Ingresar Usuario" required>
 
             </div> 
 

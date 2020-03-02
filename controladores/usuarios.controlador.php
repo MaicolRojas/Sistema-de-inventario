@@ -14,7 +14,7 @@ class ControladorUsuarios{
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])){
 
 			   
-				$encriptar = crypt($_POST['ingPassword'], '$2a$07$usesomesillystringforsalt$'); 
+				$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$'); 
 
 				$tabla = "usuarios";
 
@@ -24,21 +24,56 @@ class ControladorUsuarios{
 
 				$respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla,$item,$valor);
 
-				if ($respuesta["usuario"] == $_POST['ingUsuario'] && $respuesta['password'] == $encriptar) {
+				if ($respuesta["usuario"] == $_POST['ingUsuario'] && $respuesta['password']  == $encriptar) {
 
-					$_SESSION["iniciarSession"] = "ok";
+					if ($respuesta['estado'] == 1) {
+							
+						$_SESSION["iniciarSession"] = "ok";
 
-					$_SESSION["id"] = $respuesta['id'];
-					$_SESSION["nombre"] = $respuesta['nombre'];
-					$_SESSION["usuario"] = $respuesta['usuario'];
-					$_SESSION["foto"] = $respuesta['foto'];
-					$_SESSION["perfil"] = $respuesta['perfil'];
+						$_SESSION["id"] = $respuesta['id'];
+						$_SESSION["nombre"] = $respuesta['nombre'];
+						$_SESSION["usuario"] = $respuesta['usuario'];
+						$_SESSION["foto"] = $respuesta['foto'];
+						$_SESSION["perfil"] = $respuesta['perfil'];
 
-					echo "<script>
+						/*==================================================================
+						=            REGISTRAR FECHA PARA SABER EL ULTIMO LOGIN            =
+						==================================================================*/
+						
+						date_default_timezone_set("America/Bogota");
 
-					 window.location = 'inicio';
+						$fecha = date('Y-m-d');
+						$hora = date("H:i:s");
 
-					</script>";
+						$fechaActual = $fecha. ' '.$hora;
+
+						$item1 = "ultimo_login";
+						$valor1 = $fechaActual;
+						$item2 = "id";
+						$valor2 = $respuesta['id'];
+
+						$ultimo_login = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
+
+						if ($ultimo_login == "ok") {
+							
+
+							echo "<script>
+
+							 window.location = 'inicio';
+
+							</script>";
+
+						}
+
+						
+						/*=====  End of REGISTRAR FECHA PARA SABER EL ULTIMO LOGIN  ======*/
+		
+
+					}else{
+		
+						echo "<br><div class ='alert alert-danger'>Error al ingresar, el usuario esta desactivado </div>";
+
+					}
 
 				}else{
 					echo "<br><div class ='alert alert-danger'>Error al ingresar, Vuelve a intentarlo.</div>";
