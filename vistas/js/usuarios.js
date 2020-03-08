@@ -235,5 +235,3 @@ $(document).on("click", ".btnEliminarUsuario", function(){
 })
 
 /*=====  End of BORRAR USUARIO  ======*/
-
-
