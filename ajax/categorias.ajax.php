@@ -6,6 +6,29 @@ require_once "../modelos/categorias.modelo.php";
 
 class AjaxCategorias{
 
+	/*=========================================
+	=            EDITAR CATEGORIAS            =
+	=========================================*/
+	
+	
+	public $idCategoria;
+
+
+	public function ajaxEditarCategoria(){
+
+		$item = "id";
+
+		$valor = $this->idCategoria;
+		
+		$respuesta = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+
+ 		echo json_encode($respuesta); 
+	}
+	
+
+	/*=====  End of EDITAR CATEGORIAS  ======*/
+	
+
 /*====================================================
 =            VALIDAR NO REPETIR CATEGORIA            =
 ====================================================*/
@@ -31,15 +54,30 @@ public $validarCategoria;
 
 }
 
+/*================================================
+=            VALIDAR EDITAR CATEGORIA            =
+================================================*/
+
+if (isset($_POST["idCategoria"])) {
+	
+	$editar = new AjaxCategorias();
+	$editar -> idCategoria = $_POST["idCategoria"];
+	$editar -> ajaxEditarCategoria();
+
+}
+
+
+/*=====  End of VALIDAR EDITAR CATEGORIA  ======*/
+
 
 /*==================================================
-=            VALIDAR NO REPETIR USUARIO            =
+=         VALIDAR NO REPETIR CATEGORIA            =
 ==================================================*/
 
 	if (isset($_POST["validarCategoria"])) {
 	
 		$valCategoria = new AjaxCategorias();
-		$valCategoria -> validarCategoria = $_POST["validasrCategoria"];
+		$valCategoria -> validarCategoria = $_POST["validarCategoria"];
 		$valCategoria -> ajaxValidarCategorias();
 
 	}

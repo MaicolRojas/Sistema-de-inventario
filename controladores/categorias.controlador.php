@@ -95,18 +95,131 @@ class ControladorCategorias{
 	}
 	
 	/*=====  End of MOSTRAR CATEGORIAS  ======*/
+
+
+	/*=========================================
+	=            EDITAR CATEGORIAS            =
+	=========================================*/
+	
+	
+	static public function ctrEditarCategoria(){
+		
+		if (isset($_POST['editarCategoria'])){
+
+			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCategoria"])){
+
+				$tabla = "categorias";
+
+				$datos = array("categoria"=> $_POST['editarCategoria'], "id" => $_POST['idCategoria']);
+
+				$respuesta = ModeloCategorias::mdlEditarCategoria($tabla, $datos);
+
+				if ($respuesta == "ok") {
+
+					echo '<script>
+
+					swal({
+
+						type: "success",
+						title: "¡La categoría ha sido cambiada correctamente!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+
+					}).then(function(result){
+
+						if(result.value){
+						
+							window.location = "";
+
+						}
+
+					});
+				
+
+				</script>';
+
+				}else{
+					echo "<script>
+					alert('ERROR');
+					</script>";
+				}
+				
+			}else{
+
+				echo '<script>
+
+					swal({
+
+						type: "error",
+						title: "¡La categoría no puede ir vacía o llevar caracteres especiales!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+
+					}).then(function(result){
+
+						if(result.value){
+						
+							window.location = "categorias";
+
+						}
+
+					});
+				
+
+				</script>';
+			}
+
+		}
+
+	}
+	
+	/*=====  End of EDITAR CATEGORIAS  ======*/
+	
+
+	/*========================================
+	=            BORRAR CATEGORIA            =
+	========================================*/
+	
+	static public function ctrBorrarCategoria(){
+
+		if(isset($_GET["idCategoria"])){
+
+			$tabla ="categorias";
+			$datos = $_GET["idCategoria"];
+
+
+			$respuesta = ModeloCategorias::mdlBorrarCategorias($tabla, $datos);
+
+			if($respuesta == "ok"){
+
+				echo'<script>
+
+				swal({
+					  type: "success",
+					  title: "La categoría ha sido borrado correctamente",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar"
+					  }).then(function(result){
+								if (result.value) {
+
+								window.location = "categorias";
+
+								}
+							})
+
+				</script>';
+
+			}		
+
+		}
+
+	}
+	
+	
+	/*=====  End of BORRAR CATEGORIA  ======*/
+	
 	
 	
 	
 }
 
-try {
-  
-
-
-
-} catch (Exception $e) {
-
-    echo 'Excepción capturada: ',  $e->getMessage(), "\n";
-    
-}
