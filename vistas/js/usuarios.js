@@ -106,8 +106,7 @@ $(document).on("click", ".btnEditarUsuario", function(){
 /*========================================
 =            ACTIVAR USUARIOS            =
 ========================================*/
-
-$(".btnActivar").click(function() {
+$(document).on("click", ".btnActivar", function(){
 
 	var idUsuario = $(this).attr("idUsuario");
 	var estadoUsuario = $(this).attr("estadoUsuario");
@@ -125,6 +124,23 @@ $(".btnActivar").click(function() {
 		contentType: false,
 		processData: false,
 		success: function(respuesta){
+
+			if (window.matchMedia("(max-width:767px)").matches) {
+
+				swal({
+
+					title: "El usuarios ha sido actualizad",
+					type: "success",
+					confirmButtonText: "¡Cerrar!"
+				}).then(function(result) {
+					
+					if (result.value) {
+
+						window.location = "usuarios";
+					}
+
+				})
+			}
 
 			
 
@@ -186,3 +202,38 @@ $("#nuevoUsuario").change(function(){
 });
 
 /*=====  End of REVISAR USUARIO SI YA ESTA REGISTRADO  ======*/
+
+/*======================================
+=            BORRAR USUARIO            =
+======================================*/
+$(document).on("click", ".btnEliminarUsuario", function(){
+
+  var idUsuario = $(this).attr("idUsuario");
+  var fotoUsuario = $(this).attr("fotoUsuario");
+  var usuario = $(this).attr("usuario");
+
+  swal({
+    title: '¿Está seguro de borrar el usuario?',
+    text: "¡Si no lo está puede cancelar la accíón!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Si, borrar usuario!'
+  }).then(function(result){
+
+  	
+    if(result.value){
+
+      window.location = "index.php?ruta=usuarios&idUsuario="+idUsuario+"&usuario="+usuario+"&fotoUsuario="+fotoUsuario;
+
+    }
+
+  })
+
+})
+
+/*=====  End of BORRAR USUARIO  ======*/
+
+

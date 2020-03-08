@@ -91,7 +91,8 @@
                         <div class="btn-group">
                           
                           <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value['id'].'"><i class="fa fa-pencil" data-toggle="modal" data-target="#modalEditarUsuario"></i></button>
-                          <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+
+                          <button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>
 
                         </div>
 
@@ -402,8 +403,8 @@ MODAL EDITAR USUARIO
 
 <?php
 
-  // $borrarUsuario = new ControladorUsuarios();
-  // $borrarUsuario -> ctrBorrarUsuario();
+  $borrarUsuario = new ControladorUsuarios();
+  $borrarUsuario -> ctrBorrarUsuario();
 
 ?> 
 

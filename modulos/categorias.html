@@ -49,39 +49,24 @@
         </thead>
 
         <tbody>
-           <?php 
-
-              $item = null;
-
-              $valor = null;
-
-              $Categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
-
-             
-
-              foreach ($Categorias as $key => $value) {
-
-                echo "
-                <tr>
-                  <td>".$value['id']."</td>
-                  <td>".$value['categoria']."</td>
-
-                  <td>
-
-                    <div class='btn-group'>
-                        
-                      <button class='btn btn-warning'><i class='fa fa-pencil'></i></button>
-
-                      <button class='btn btn-danger'><i class='fa fa-times'></i></button>
-
-                    </div>  
-
-                    </td>
-                </tr>";
-            }
-                ?>
           
-          
+          <tr>
+            <td>1</td>
+            <td>EQUIPO ELECTROMECÁNICO</td>
+
+            <td>
+
+              <div class="btn-group">
+                  
+                <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+
+                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+
+              </div>  
+
+            </td>
+
+          </tr>
 
         </tbody>
 
@@ -96,7 +81,7 @@
 </div>
 
 <!--=====================================
-MODAL AGREGAR CATEGORIA
+MODAL AGREGAR USUARIO
 ======================================-->
 
 <div id="modalAgregarCategoria" class="modal fade" role="dialog">
@@ -135,7 +120,7 @@ MODAL AGREGAR CATEGORIA
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                <input type="text" class="form-control input-lg" id="nuevaCategoria" name="nuevaCategoria" placeholder="Ingresar Categoría" required>
+                <input type="text" class="form-control input-lg" name="nuevoCategoria" placeholder="Ingresar Categoría" required>
 
               </div>
 
@@ -152,17 +137,11 @@ MODAL AGREGAR CATEGORIA
 
         <div class="modal-footer">
 
-          <button  type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
           <button type="submit" class="btn btn-primary">Guardar Categoría</button>
 
         </div>
-
-        <?php
-
-          $crearCategoria = new ControladorCategorias();
-          $crearCategoria -> ctrCrearCategoria();
-        ?>
 
       </form>
 
