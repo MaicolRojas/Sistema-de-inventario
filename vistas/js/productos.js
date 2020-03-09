@@ -1,16 +1,26 @@
- /*====================================
- =            SIDEBAR MENU            =
- ====================================*/
- 
- 
- $('.sidebar-menu').tree();
+/*=============================================================
+=            CARGAR LA TABLA DINAMICA DE PRODUCTOS            =
+=============================================================*/
 
-/*==================================
-=            DATA TABLE            =
-==================================*/
+// $.ajax({
 
-$('.tablas').DataTable({
-	"language": {
+// 	url: 'ajax/datatable-productos.ajax.php',
+// 	success: function (respuesta) {
+
+// 		console.log("respuesta", respuesta);
+
+// 	}
+// });
+
+
+/*=====  End of CARGAR LA TABLA DINAMICA DE PRODUCTOS  ======*/
+
+$('.tablaProductos').DataTable( {
+        "ajax": "ajax/datatable-productos.ajax.php",
+        "deferRender": true,
+        "retrieve": true,
+        "processing": true,
+        "language": {
 
 		"sProcessing":     "Procesando...",
 		"sLengthMenu":     "Mostrar _MENU_ registros",
@@ -36,17 +46,4 @@ $('.tablas').DataTable({
 		}
 
 	}
-});
-
- /*====================================
- =            JS DE iCheck            =
- ====================================*/
- 
- $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-      checkboxClass: 'icheckbox_minimal-blue',
-      radioClass   : 'iradio_minimal-blue'
-    })
- 
- 
- /*=====  End of JS DE iCheck  ======*/
- 
+    } );
