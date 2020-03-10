@@ -47,3 +47,94 @@ $('.tablaProductos').DataTable( {
 
 	}
     } );
+
+$("#nuevaCategoria").change(function(){
+
+	var idCategoria = $(this).val();
+
+	var datos = new FormData();
+
+	datos.append("idCategoria", idCategoria);
+
+	$.ajax({
+
+		url: "ajax/productos.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta){
+
+			if (!respuesta) {
+
+				var nuevoCodigo = idCategoria+"01";
+				$("#nuevoCodigo").val(nuevoCodigo);
+
+			}else{
+				var nuevoCodigo = Number(respuesta['codigo']) + 1;
+			
+				$("#nuevoCodigo").val(nuevoCodigo);
+			}
+
+		}
+	})
+
+
+});
+
+/*=================================================
+=            AGEGRANDO PRECIO DE VENTA            =
+=================================================*/
+
+$("#nuevoPrecioCompra").change(function(){
+
+	if ($(".porcentaje").prop("checked")) {
+
+		var valorPorcentaje = $(".nuevoPorcentaje").val();
+
+		var porcentaje = Number(( $("#nuevoPrecioCompra").val() * valorPorcentaje / 100 )) + Number( $("#nuevoPrecioCompra").val());
+
+		$("#nuevoPrecioVenta").val(porcentaje);
+
+		$("#nuevoPrecioVenta").prop("readonly", true);
+
+
+	}
+	
+})
+
+/*=====  End of AGEGRANDO PRECIO DE VENTA  ======*/
+
+/*============================================
+=            CAMBIO DE PORCENTAJE            =
+============================================*/
+
+$(".nuevoPorcentaje").change(function(){
+
+	if ($(".porcentaje").prop("checked")) {
+
+		var valorPorcentaje = $(".nuevoPorcentaje").val();
+
+		var porcentaje = Number(( $("#nuevoPrecioCompra").val() * valorPorcentaje / 100 )) + Number( $("#nuevoPrecioCompra").val());
+
+		$("#nuevoPrecioVenta").val(porcentaje);
+
+		$("#nuevoPrecioVenta").prop("readonly", true);
+
+	}
+
+})
+
+/*=====  End of CAMBIO DE PORCENTAJE  ======*/
+
+$(".porcentaje").on("ifUnchecked",function(){
+
+	$("#nuevoPrecioVenta").prop("readonly", false);    
+}) 
+
+$(".porcentaje").on("ifChecked",function(){
+
+	$("#nuevoPrecioVenta").prop("readonly", true);    
+}) 

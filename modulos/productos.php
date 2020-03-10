@@ -34,7 +34,7 @@
 
       <div class="box-body">
         
-       <table class="table table-bordered table-striped dt-responsive tablaProductos">
+       <table class="table table-bordered table-striped dt-responsive tablaProductos" style="width: 100%">
          
         <thead>
 
@@ -98,6 +98,39 @@ MODAL AGREGAR PRODUCTO
 
           <div class="box-body">
 
+              <!-- ENTRADA PARA SELECCIONAR LA CATEGORIA -->
+
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <select class="form-control input-lg" id="nuevaCategoria" name="nuevaCategoria">
+                  
+                  <option value="">Selecionar Categoria</option>
+
+                  <?php
+
+                  $item = null;
+
+                  $valor = null; 
+
+                  $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+
+                  foreach ($categoria as $key => $value) {
+                    
+                    echo '<option value="'.$value['id'].'">'.$value['categoria'].'</option>';
+                  }
+                  ?>
+
+
+                </select>
+
+              </div>
+
+            </div>
+
             <!-- ENTRADA PARA EL CODIGO -->
             
             <div class="form-group">
@@ -106,7 +139,7 @@ MODAL AGREGAR PRODUCTO
               
                 <span class="input-group-addon"><i class="fa fa-code"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevoCodigo" placeholder="Ingresar Código" required>
+                <input type="text" class="form-control input-lg" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar Código" readonly required>
 
               </div>
 
@@ -121,30 +154,6 @@ MODAL AGREGAR PRODUCTO
                 <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span> 
 
                 <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar Descripción" required>
-
-              </div>
-
-            </div>
-
-            <!-- ENTRADA PARA SELECCIONAR LA CATEGORIA -->
-
-            <div class="form-group">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                <select class="form-control input-lg" name="nuevaCategoria">
-                  
-                  <option value="">Selecionar Categoria</option>
-
-                  <option value="Taladros">Taladros</option>
-
-                  <option value="Andamios">Andamios</option>
-
-                  <option value="Equipos para construccion">Equipos para construccion</option>
-
-                </select>
 
               </div>
 
@@ -169,26 +178,26 @@ MODAL AGREGAR PRODUCTO
 
              <div class="form-group row">
               
-              <div class="col-xs-6">
+              <div class="col-xs-12 col-sm-6">
 
                 <div class="input-group">
                 
                   <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span> 
 
-                  <input type="number" class="form-control input-lg" min="0" name="nuevoPrecioCompra" placeholder="Precio de compra" required>
+                  <input type="number" class="form-control input-lg" min="0" id="nuevoPrecioCompra"  name="nuevoPrecioCompra" step="any" placeholder="Precio de compra" required>
 
                 </div>
+                <br>
 
               </div>      
-
             <!-- ENTRADA PARA EL PRECIO VENTA -->
-              <div class="col-xs-6">
+              <div class="col-xs-12 col-sm-6">
 
                 <div class="input-group">
                 
                   <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span> 
 
-                  <input type="number" class="form-control input-lg" min="0" name="nuevoPrecioVenta" placeholder="Precio de venta" required>
+                  <input type="number" class="form-control input-lg" min="0" id="nuevoPrecioVenta" name="nuevoPrecioVenta" step="any" placeholder="Precio de venta" required>
 
                 </div>
 
@@ -234,11 +243,11 @@ MODAL AGREGAR PRODUCTO
               
               <div class="panel">SUBIR IMAGEN</div>
 
-              <input type="file" id="nuevaImagen" name="nuevaImagen">
+              <input type="file" class="nuevaFoto" name="nuevaImagen">
 
               <p class="help-block">Peso máximo de la imagen 200 MB</p>
 
-              <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="100px">
+              <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualisar" width="100px">
 
             </div>
 
@@ -259,6 +268,11 @@ MODAL AGREGAR PRODUCTO
         </div>
 
       </form>
+
+      <?php
+        $crearProducto = new ControladorProductos();
+        $crearProducto -> ctrCrearProducto();
+      ?>
 
     </div>
 
