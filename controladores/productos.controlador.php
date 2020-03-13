@@ -197,7 +197,7 @@ class ControladorProductos{
 			   =            VALIDAR IMAGEN            =
 			   ======================================*/
 			   
-			   if (isset($_FILES['editarImagen']["tmp_name"])) {
+			   if (isset($_FILES['editarImagen']["tmp_name"]) && !empty($_FILES['editarImagen']["tmp_name"])) {
 
 					list($ancho, $alto) = getimagesize($_FILES['editarImagen']["tmp_name"]);
 					
@@ -215,14 +215,14 @@ class ControladorProductos{
 					=            PREGUNTAMOS SI LA IMAGEN EXISTE EN LA BD            =
 					================================================================*/
 
-					if(!empty($_POST['imagenActual']) && $_POST['imagenActual'] =! "vistas/img/productos/default/anonymous.png"){
+					if(!empty($_POST["imagenActual"]) && $_POST["imagenActual"] != "vistas/img/productos/default/anonymous.png"){
 
 						unlink($_POST["imagenActual"]);
 
 					}else{
 
-						mkdir($directorio, 0755);
-
+						mkdir($directorio, 0755);	
+					
 					}
 					
 					
@@ -348,6 +348,62 @@ class ControladorProductos{
 	
 	
 	/*=====  End of EDITAR PRODUCTO  ======*/
+	
+	/*=======================================
+	=            BORAR PRODUCTO             =
+	=======================================*/
+	
+	static public function ctrEliminarProducto(){
+
+		if (isset($_GET['idProducto'])) {
+
+			$tabla = "productos";
+
+			$datos = $_GET['idProducto'];
+
+			if ($_GET['imagen'] != "" && $_GET['imagen'] != "vistas/img/productos/default/anonymous.png") {
+
+				unlink($_GET['imagen']);
+				rmdir('vistas/img/productos/'.$_GET["codigo"]);
+
+			}
+
+			$respuesta = ModeloProductos::mdlEliminarProducto($tabla, $datos);
+
+			if($respuesta == "ok"){
+
+					echo'<script>
+
+						swal({
+							  type: "success",
+							  title: "El producto ha eliminado correctamente",
+							  showConfirmButton: true,
+							  confirmButtonText: "Cerrar"
+							  }).then(function(result){
+										if (result.value) {
+
+										window.location = "productos";
+
+										}
+									})
+
+						</script>';
+ 
+				}else{
+
+					echo'<script>
+					console.log("error","'.$respuesta.'");
+					</script>';
+
+				}
+
+		}
+	}
+	
+	
+	/*=====  End of BORAR PRODUCTO   ======*/
+
+	
 	
 	
 	
