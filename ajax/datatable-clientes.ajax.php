@@ -20,7 +20,7 @@ class TablaClientes{
 			  for ($i=0; $i < count($clientes) ; $i++){
 
 
-			  	$botones =  "<div class='btn-group'><button class='btn btn-warning'><i class='fa fa-pencil btnEditarCliente' data-toggle='modal' data-target='modalEditarCliente' idCliente='".$clientes[$i]['id']."'></i></button><button class='btn btn-danger'><i class='fa fa-times'></i></button></div>"; 
+			  	$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarCliente' data-toggle='modal' data-target='#modalEditarCliente' idCliente='".$clientes[$i]["id"]."''><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarCliente' idCliente='".$clientes[$i]["id"]."''><i class='fa fa-times'></i></button></div>"; 
 
 			  	$datosJson .= '
 				  	 [
@@ -28,8 +28,8 @@ class TablaClientes{
 				      "'.$clientes[$i]['nombre'].'",
 				      "'.$clientes[$i]['documento'].'",
 				      "'.$clientes[$i]['email'].'",
-				      "$ '.$clientes[$i]['telefono'].'",
-				      "$ '.$clientes[$i]['direccion'].'",
+				      "'.$clientes[$i]['telefono'].'",
+				      "'.$clientes[$i]['direccion'].'",
 				      "'.$clientes[$i]['fecha_nacimiento'].'",
 				      "'.$clientes[$i]['compras'].'",
 				      "'.$clientes[$i]['ultima_compra'].'",
