@@ -90,7 +90,11 @@ $(document).on("click", ".btnEditarUsuario", function(){
 
 			if(respuesta["foto"] != ""){
 
-				$(".previsualizar").attr("src", respuesta["foto"]);
+				$("#imagenActual").val(respuesta["foto"]);
+
+           		$(".previsualizar").attr("src",  respuesta["foto"]);
+           	
+           		$("#act").attr("src",  respuesta["foto"]);
 
 			}
 

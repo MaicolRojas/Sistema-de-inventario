@@ -25,7 +25,7 @@
 
         <div class="box-body">
           
-          <table class="table table-bordered table-striped tablas dt-responsive">
+          <table class="table table-bordered table-striped tablas dt-responsive tablaUsuarios">
             
             <thead>
 
@@ -364,9 +364,12 @@ MODAL EDITAR USUARIO
 
               <p class="help-block">Peso máximo de la foto 2MB</p>
 
-              <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
+            
+
+              <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualisar" id="act" width="100px">
 
               <input type="hidden" name="fotoActual" id="fotoActual">
+
 
             </div>
 

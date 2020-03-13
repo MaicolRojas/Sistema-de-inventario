@@ -54,7 +54,7 @@ class ModeloUsuarios{
 
 		}else{
 
-			return "error";
+			return $stmt->errorInfo();
 		
 		}
 

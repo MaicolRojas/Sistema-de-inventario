@@ -61,7 +61,7 @@ static public function mdlIngresarProducto($tabla, $datos){
 
 		}else{
 
-			return "error";
+			return "id_categoria: " .$datos["id_categoria"]. " codigo: ". $datos["codigo"]. " descripcion: ". $datos["descripcion"]. " imagen: ". $datos["imagen"]. " stock: ".  $datos["stock"]. " precio_compra: ". $datos["precio_compra"]." precio_venta: ".$datos["precio_venta"];
 		
 		}
 
@@ -72,6 +72,40 @@ static public function mdlIngresarProducto($tabla, $datos){
 
 
 /*=====  End of REGISTRO DE PRODUCTOS  ======*/
+
+/*=======================================
+=            EDITAR PRODUCTO            =
+=======================================*/
+
+static public function mdlEditarProducto($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_categoria = :id_categoria, descripcion = :descripcion, imagen = :imagen, stock = :stock, precio_compra = :precio_compra, precio_venta = :precio_venta WHERE codigo = :codigo");
+
+		$stmt->bindParam(":id_categoria", $datos["id_categoria"], PDO::PARAM_INT);
+		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_STR);
+		$stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
+		$stmt->bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);
+		$stmt->bindParam(":stock", $datos["stock"], PDO::PARAM_STR);
+		$stmt->bindParam(":precio_compra", $datos["precio_compra"], PDO::PARAM_STR);
+		$stmt->bindParam(":precio_venta", $datos["precio_venta"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}else{
+
+			return "id_categoria: " .$datos["id_categoria"]. " codigo: ". $datos["codigo"]. " descripcion: ". $datos["descripcion"]. " imagen: ". $datos["imagen"]. " stock: ".  $datos["stock"]. " precio_compra: ". $datos["precio_compra"]." precio_venta: ".$datos["precio_venta"];
+		
+		}
+
+		$stmt->close();
+		$stmt = null;
+
+	}
+
+
+/*=====  End of EDITAR PRODUCTO  ======*/
 
 	
 }
