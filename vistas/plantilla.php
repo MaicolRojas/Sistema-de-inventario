@@ -64,7 +64,11 @@ session_start();
 
   <!-- iCheck js -->
   <script src="vistas/plugins/iCheck/icheck.min.js"></script>
-
+<script src="vistas/bower_components/select2/dist/js/select2.full.min.js"></script>
+  <!-- InputMask -->
+  <script src="vistas/plugins/input-mask/jquery.inputmask.js"></script>
+  <script src="vistas/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+  <script src="vistas/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
    
 </head>
@@ -144,5 +148,6 @@ session_start();
 <script src="vistas/js/usuarios.js"></script>
 <script src="vistas/js/categorias.js"></script>
 <script src="vistas/js/productos.js"></script>
+<script src="vistas/js/clientes.js"></script>
 </body> 
 </html>
