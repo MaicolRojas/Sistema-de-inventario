@@ -370,4 +370,10 @@ MODAL EDITAR USUARIO
 
 </div>
 
+<?php 
 
+$eliminarCliente = new ControladorClientes();
+$eliminarCliente -> ctrEliminarCliente();
+
+?>
+      
