@@ -38,7 +38,7 @@
 
       <div class="box-body">
         
-       <table class="table table-bordered table-striped dt-responsive tablasAministrarVentas">
+       <table class="table table-bordered table-striped dt-responsive tablas">
          
         <thead>
          
@@ -51,14 +51,15 @@
            <th>Forma de pago</th>
            <th>Neto</th>
            <th>Total</th>
+           <th>Acciones</th>
            <th>Fechas</th>
-           <th>Acciones</th> 
+           <th>Acciones</th>
 
          </tr> 
 
         </thead>
 
-        <!-- <tbody>
+        <tbody>
           
           <tr>
             <td>1</td>
@@ -95,7 +96,7 @@
 
           </tr>
 
-        </tbody> -->
+        </tbody>
 
        </table>
 

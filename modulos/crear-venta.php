@@ -21,7 +21,7 @@
       =            EL FORMULARIO            =
       ====================================-->
     
-      <div class="col-lg-6 col-xs-11"><!--lg-5-->
+      <div class="col-lg-6 col-xs-15"><!--lg-5-->
 
         <div class="box box-success">
           
@@ -102,7 +102,7 @@
 
                       <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-                      <select  class="form-control" id="seleccionarCliente" name="seleccionarCliente">
+                      <select  class="form-control" id="seleccionarCliente" name="seleccionarCliente" required="">
 
                         <option value="">Seleccionar Cliente</option>
 
@@ -139,6 +139,8 @@
                     
 
                   </div>
+
+                  <input type="hidden" id="listaProductos" name="listaProductos">
 
                   <!--=================================================
                   =            BOTON PARA AGREGAR PRODUCTO            =
@@ -227,9 +229,9 @@
                       <select class="form-control" id="nuevoMetodoPago" name="nuevoMetodoPago" required="">
                       
                         <option value="">Seleccionar Metodo de Pago</option>
-                        <option value="efectivo">Efectivo</option>
-                        <option value="tarjetaCredito">Tarjeta de Credito</option>
-                        <option value="tarjetaDebito">Tarjeta Debito</option>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="TC">Tarjeta de Credito</option>
+                        <option value="TD">Tarjeta Debito</option>
 
                       </select>
             
@@ -237,17 +239,11 @@
                       
                     </div>
 
-                    <div class="col-xs-6" style="padding-left: 0px">
+                    <div class="cajaMetodoPago"></div>
                       
-                      <div class="input-group">
-                        
-                        <input type="text" class="form-control" id="nuevoCodigoTransaccion" name="nuevoCodigoTransaccion" placeholder="codigo Transaccion" required>
+                      <input type="hidden" name="listaMetodoPago" id="listaMetodoPago">
 
-                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-
-                      </div>
-
-                    </div>
+                    
 
                   </div>
 
@@ -264,6 +260,12 @@
             </div>
 
           </form>
+
+          <?php
+
+            $guardarVenta = new ControladorVentas();
+            $guardarVenta -> ctrCrearVenta(); 
+          ?>
             
           </div>
 
