@@ -21,13 +21,13 @@
       =            EL FORMULARIO            =
       ====================================-->
     
-      <div class="col-lg-5 col-xs-12">
+      <div class="col-lg-6 col-xs-11"><!--lg-5-->
 
         <div class="box box-success">
           
           <div class="box-header with-border">
 
-            <form role="form" method="POST">
+            <form role="form" method="POST" class="formularioVenta">
 
             <div class="box-body">
                 
@@ -43,7 +43,9 @@
 
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                      <input type="text" class="form-control" id="nuevoVendedor" name="nuevoVendedor" value="Usuario Administrador" readonly>
+                      <input type="text" class="form-control" id="nuevoVendedor" name="nuevoVendedor" value="<?php echo $_SESSION['nombre'] ?>" readonly>
+
+                      <input type="hidden" name="idVendedor" = value="<?php echo $_SESSION['id'] ?>">
                     
                     </div>
                     
@@ -59,7 +61,32 @@
 
                       <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
-                      <input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="10002343" readonly="">
+                      <?php 
+
+                      $item = null;
+
+                      $valor = null;
+
+                      $ventas = ControladorVentas::ctrMostrarVentas($item, $valor);
+
+                      if (!$ventas) {
+
+                        echo ' <input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="10001" readonly="">';
+                       
+                      }else{
+
+                        foreach ($ventas as $key => $value) {
+                          # code...
+                        }
+
+                        $codigo = $value['codigo']+1;  
+
+                         echo ' <input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="'.$codigo.'" readonly="">';
+                      }
+
+                      ?>
+
+                     
                     
                     </div>
                     
@@ -79,6 +106,22 @@
 
                         <option value="">Seleccionar Cliente</option>
 
+                        <?php 
+
+                        $item = null;
+
+                        $valor = null;
+
+                        $Categorias = ControladorClientes::ctrMostrarClientes($item, $valor);
+
+                        foreach ($Categorias as $key => $value) {
+
+                          echo "<option value='".$value['id']."'>".$value['nombre']."</option>";
+                          
+                        }
+
+                        ?>
+
                       </select>
 
                       <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalAgregarCliente" data-dismiss="modal">Agregar Cliente</button></span>
@@ -93,43 +136,7 @@
 
                   <div class="form-group row nuevoProducto">
 
-                    <!-- descrion del producto -->
                     
-                    <div class="col-xs-6" style="padding-right: 0px">
-                      
-                      <div class="input-group">
-                        
-                        <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></span> 
-
-                        <input type="text" class="form-control" id="agregarProducto" name="agregarProducto" placeholder="Descripción del producto" required>
-
-                      </div>
-
-                    </div>
-
-                    <!-- cantidad del producto -->
-
-                    <div class="col-xs-3">
-                      
-                      <input type="number" class="form-control" id="nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" placeholder="0" required>
-
-                    </div>
-
-                    <!-- precio del producto -->
-
-                    <div class="col-xs-3" style="padding-left: 0px">
-                      
-                      <div class="input-group">
-
-                        <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                        
-                        <input type="number" min="1" class="form-control" id="nuevoPrecioProducto" class="nuevoPrecioProducto" placeholder="000000" readonly required>
-
-                        
-
-                      </div>
-
-                    </div>
 
                   </div>
 
@@ -137,7 +144,7 @@
                   =            BOTON PARA AGREGAR PRODUCTO            =
                   ==================================================-->
 
-                  <button type="button" class="btn btn-default hidden-lg">Agregar Productos</button>
+                  <button type="button" class="btn btn-default hidden-lg btnAgregarProducto">Agregar Productos</button>
 
                   <hr>
 
@@ -268,7 +275,7 @@
     =            LA TABLA DE PRODUCTOS            =
     ============================================-->
     
-   <div class="col-lg-7 hidden-md hidden-sm hidden-xs">
+   <div class="col-lg-6 hidden-md hidden-sm hidden-xs"><!--lg-7-->
         
         <div class="box box-warning">
 
@@ -276,7 +283,7 @@
 
           <div class="box-body">
             
-            <table class="table table-bordered table-striped dt-responsive tablas">
+            <table class="table table-bordered table-striped dt-responsive tablaVentas">
               
                <thead>
 
@@ -285,31 +292,11 @@
                   <th>Imagen</th>
                   <th>Código</th>
                   <th>Descripcion</th>
-                  <th>Categoria</th>
                   <th>Stock</th>
                   <th>Acciones</th>
                 </tr>
 
               </thead>
-
-              <tbody>
-                <tr>
-
-                  <td>1</td>
-                  <td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                  <td>000123</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>20</td>
-                  <td>
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-primary">Agregar</button>
-                    </div>
-                  </td>
-
-                </tr>
-
-              </tbody>
 
             </table>
 

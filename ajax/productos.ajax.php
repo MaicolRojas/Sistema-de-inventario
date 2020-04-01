@@ -29,16 +29,44 @@ class AjaxProducto{
 	=======================================*/
 	
 	public $idProducto;
+	public $traerProductos;
+	public $nombreProducto;
 
 	public function ajaxEditarProducto(){
-		
-		$item = "id";
 
-		$valor = $this->idProducto;
+		if ($this->traerProductos == "ok") {
+			
 
-		$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor);
-		
-		echo json_encode($respuesta);
+			$item = null;
+
+			$valor = null;
+
+			$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor);
+			
+			echo json_encode($respuesta);
+
+		}else if($this->nombreProducto != ""){
+
+			$item = "descripcion";
+
+			$valor = $this->nombreProducto;
+
+			$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor);
+			
+			echo json_encode($respuesta);
+
+
+			}else{
+
+			$item = "id";
+
+			$valor = $this->idProducto;
+
+			$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor);
+			
+			echo json_encode($respuesta);
+
+		}
 
 
 	}
@@ -69,9 +97,37 @@ if (isset($_POST['idCategoria'])) {
 
 	if (isset($_POST['idProducto'])) {
 
-		$codigoProducto = new AjaxProducto();
-		$codigoProducto -> idProducto = $_POST['idProducto'];
-		$codigoProducto -> ajaxEditarProducto();
+		$editarProducto = new AjaxProducto();
+		$editarProducto -> idProducto = $_POST['idProducto'];
+		$editarProducto -> ajaxEditarProducto();
 	}
 	
 	/*=====  End of EDITAR PRODUCTO  ======*/
+
+
+	/*=======================================
+	=            TRAER PRODUCTO            =
+	=======================================*/
+
+	if (isset($_POST['traerProductos'])) {
+
+		$traerProductos = new AjaxProducto();
+		$traerProductos -> traerProductos = $_POST['traerProductos'];
+		$traerProductos -> ajaxEditarProducto();
+	}
+	
+	/*=====  End of TRAER PRODUCTO  ======*/
+
+
+	/*=======================================
+	=            TRAER PRODUCTO            =
+	=======================================*/
+
+	if (isset($_POST['nombreProducto'])) {
+
+		$traerProductos = new AjaxProducto();
+		$traerProductos -> nombreProducto = $_POST['nombreProducto'];
+		$traerProductos -> ajaxEditarProducto();
+	}
+	
+	/*=====  End of TRAER PRODUCTO  ======*/
