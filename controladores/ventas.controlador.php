@@ -67,10 +67,20 @@ class ControladorVentas{
 
 			$traerCliente = ModeloClientes::mdlMostrarClientes($tablaClientes, $item, $valor);
 
-			$item1 = "compras";
-			$valor1 = array_sum($totalProductosComprados) + $traerCliente["compras"];
+			$item1a = "compras";
+			$valor1a= array_sum($totalProductosComprados) + $traerCliente["compras"];
 
-			$ComprasCliente = ModeloClientes::mdlActualizarCliente($tablaClientes, $item1, $valor1, $valor);
+			$ComprasCliente = ModeloClientes::mdlActualizarCliente($tablaClientes, $item1a, $valor1a, $valor);
+
+			$item1b = "ultima_compra";
+
+			date_default_timezone_set('America/Bogota');
+
+			$fecha = date('Y-m-d');
+			$hora = date("H:i:s");
+			$valor1b = $fecha.' '.$hora;
+
+			$ComprasCliente = ModeloClientes::mdlActualizarCliente($tablaClientes, $item1b, $valor1b, $valor);
 
 			/*=========================================
 			=            GUARDAR LA COMPRA            =
