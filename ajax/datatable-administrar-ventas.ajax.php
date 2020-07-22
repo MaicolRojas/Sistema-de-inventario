@@ -40,7 +40,7 @@ class TablaAdministrarVentas{
 
 			  	//$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarCliente' data-toggle='modal' data-target='#modalEditarCliente' idCliente='".$clientes[$i]["id"]."''><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarCliente' idCliente='".$clientes[$i]["id"]."''><i class='fa fa-times'></i></button></div>"; 
 
-			  	$botones = "<div class='btn-group'><button class='btn btn-info'><i class='fa fa-print'></i></button><button class='btn btn-warning'><i class='fa fa-pencil'></i></button><button class='btn btn-danger'><i class='fa fa-times'></i></button></div>  ";
+			  	$botones = "<div class='btn-group'><button class='btn btn-info'><i class='fa fa-print'></i></button><button class='btn btn-warning btnEditarVenta' idVenta='".$ventas[$i]['id']."'><i class='fa fa-pencil'></i></button><button class='btn btn-danger'><i class='fa fa-times'></i></button></div>  ";
 
 			  	$datosJson .= '
 				  	 [
@@ -68,6 +68,15 @@ class TablaAdministrarVentas{
 			  ';
 			  echo $datosJson ; 
           return; 
+
+          echo '$(".btnEditarVenta").click(function(){
+
+	var idVenta = $(this).attr("idVenta");
+
+	window.location = "index.php?ruta=editar-venta&idVenta="+idVenta;
+
+
+})';
 	}
 
 	
@@ -83,3 +92,4 @@ $activarClientes = new TablaAdministrarVentas();
 $activarClientes -> mostrarTablasVentas();
 
 /*=====  End of ACTIVAR TABLA DE CLIENTES  ======*/
+
