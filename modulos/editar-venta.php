@@ -43,7 +43,11 @@
                     $item = "id";
                     $valor = $_GET["idVenta"];
 
-                    $venta = ControladorVentas::ctrMostrarVentas($item, $valor);
+                     $venta = ControladorVentas::ctrMostrarVentas($item, $valor);
+
+                    $orden = "id";
+
+                    $respuesta = ControladorProductos::ctrMostrarProductos($item, $valor,$orden);
 
                     $itemUsuario = "id";
                     $valorUsuario = $venta["id_vendedor"];
@@ -146,7 +150,9 @@
                   $item = "id";
                   $valor = $value["id"];
 
-                  $respuesta = ControladorProductos::ctrMostrarProductos($item, $valor);
+                  $orden = "id";
+
+                  $respuesta = ControladorProductos::ctrMostrarProductos($item, $valor,$orden);
 
                   $stockAntiguo = $respuesta["stock"] + $value["cantidad"];
                   

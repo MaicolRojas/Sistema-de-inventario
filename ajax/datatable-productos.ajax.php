@@ -19,7 +19,9 @@ class TablaProductos{
 
         $valor = null;
 
-        $productos = ControladorProductos::ctrMostrarProductos($item, $valor);
+        $orden = "id";
+
+        $productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
 
           $datosJson = '
           		{
@@ -76,8 +78,18 @@ class TablaProductos{
 			  	=            TRAEMOS LAS ACCIONES            =
 			  	============================================*/
 
-			  	$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["id"]."' codigo='".$productos[$i]["codigo"]."' imagen='".$productos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>"; 
+			  	if (isset($_GET["perfilOculto"]) && $_GET["perfilOculto"] == "Especial") {
 
+
+			  		$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button></div>"; 
+
+			  	}else{
+
+			  		$botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["id"]."' codigo='".$productos[$i]["codigo"]."' imagen='".$productos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>"; 
+
+			  	}
+
+			  	
 
 			  	
 			  	/*=====  End of TRAEMOS LAS ACCIONES  ======*/
