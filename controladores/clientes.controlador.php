@@ -146,6 +146,8 @@ static public function ctrMostrarClientes($item, $valor){
 
 					</script>';
 
+				}else{
+					echo "errpr";
 				}
 
 			}else{

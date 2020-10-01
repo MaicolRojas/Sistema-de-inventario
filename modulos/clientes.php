@@ -1,26 +1,10 @@
-<?php
-
-if($_SESSION["perfil"] == "Especial"){
-
-  echo '<script>
-
-    window.location = "inicio";
-
-  </script>';
-
-  return;
-
-}
-
-?>
-
 <div class="content-wrapper">
 
   <section class="content-header">
     
     <h1>
       
-      Administrar clientes
+      Administrar Clientes
     
     </h1>
 
@@ -28,7 +12,7 @@ if($_SESSION["perfil"] == "Especial"){
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar clientes</li>
+      <li class="active">Administrar Clientes</li>
     
     </ol>
 
@@ -42,7 +26,7 @@ if($_SESSION["perfil"] == "Especial"){
   
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCliente">
           
-          Agregar cliente
+          Agregar Clientes
 
         </button>
 
@@ -50,7 +34,7 @@ if($_SESSION["perfil"] == "Especial"){
 
       <div class="box-body">
         
-       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+       <table class="table table-bordered table-striped dt-responsive tablaClientes">
          
         <thead>
          
@@ -62,9 +46,9 @@ if($_SESSION["perfil"] == "Especial"){
            <th>Email</th>
            <th>Teléfono</th>
            <th>Dirección</th>
-           <th>Fecha nacimiento</th> 
-           <th>Total compras</th>
-           <th>Última compra</th>
+           <th>Fecha de Nacimiento</th>
+           <th>Total Compras</th>
+           <th>última Compra</th>
            <th>Ingreso al sistema</th>
            <th>Acciones</th>
 
@@ -72,63 +56,7 @@ if($_SESSION["perfil"] == "Especial"){
 
         </thead>
 
-        <tbody>
-
-        <?php
-
-          $item = null;
-          $valor = null;
-
-          $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
-
-          foreach ($clientes as $key => $value) {
-            
-
-            echo '<tr>
-
-                    <td>'.($key+1).'</td>
-
-                    <td>'.$value["nombre"].'</td>
-
-                    <td>'.$value["documento"].'</td>
-
-                    <td>'.$value["email"].'</td>
-
-                    <td>'.$value["telefono"].'</td>
-
-                    <td>'.$value["direccion"].'</td>
-
-                    <td>'.$value["fecha_nacimiento"].'</td>             
-
-                    <td>'.$value["compras"].'</td>
-
-                    <td>'.$value["ultima_compra"].'</td>
-
-                    <td>'.$value["fecha"].'</td>
-
-                    <td>
-
-                      <div class="btn-group">
-                          
-                        <button class="btn btn-warning btnEditarCliente" data-toggle="modal" data-target="#modalEditarCliente" idCliente="'.$value["id"].'"><i class="fa fa-pencil"></i></button>';
-
-                      if($_SESSION["perfil"] == "Administrador"){
-
-                          echo '<button class="btn btn-danger btnEliminarCliente" idCliente="'.$value["id"].'"><i class="fa fa-times"></i></button>';
-
-                      }
-
-                      echo '</div>  
-
-                    </td>
-
-                  </tr>';
-          
-            }
-
-        ?>
-   
-        </tbody>
+        
 
        </table>
 
@@ -160,7 +88,7 @@ MODAL AGREGAR CLIENTE
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar cliente</h4>
+          <h4 class="modal-title">Agregar Cliente</h4>
 
         </div>
 
@@ -180,13 +108,13 @@ MODAL AGREGAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevoCliente" placeholder="Ingresar nombre" required>
+                <input type="text" class="form-control input-lg" name="nuevoCliente" placeholder="Ingresar Nombre" required>
 
               </div>
 
             </div>
 
-            <!-- ENTRADA PARA EL DOCUMENTO ID -->
+            <!-- ENTRADA PARA EL DOCUMENTO -->
             
             <div class="form-group">
               
@@ -194,7 +122,7 @@ MODAL AGREGAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-key"></i></span> 
 
-                <input type="number" min="0" class="form-control input-lg" name="nuevoDocumentoId" placeholder="Ingresar documento" required>
+                <input type="number" min="0" class="form-control input-lg" name="nuevoDocumentoId" placeholder="Ingresar Documento" required>
 
               </div>
 
@@ -208,13 +136,13 @@ MODAL AGREGAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                <input type="email" class="form-control input-lg" name="nuevoEmail" placeholder="Ingresar email" required>
+                <input type="email" class="form-control input-lg" name="nuevoEmail" placeholder="Ingresar Email" required>
 
               </div>
 
             </div>
 
-            <!-- ENTRADA PARA EL TELÉFONO -->
+            <!-- ENTRADA PARA EL TELEFONO -->
             
             <div class="form-group">
               
@@ -222,13 +150,13 @@ MODAL AGREGAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevoTelefono" placeholder="Ingresar teléfono" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+                <input type="text" class="form-control input-lg" name="nuevoTelefono" placeholder="Ingresar Telefono" data-inputmask="'mask':'(999) 999-999'" data-mask required>
 
               </div>
 
             </div>
 
-            <!-- ENTRADA PARA LA DIRECCIÓN -->
+             <!-- ENTRADA PARA LA DIRECCION -->
             
             <div class="form-group">
               
@@ -236,13 +164,13 @@ MODAL AGREGAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevaDireccion" placeholder="Ingresar dirección" required>
+                <input type="text" class="form-control input-lg" name="nuevaDireccion" placeholder="Ingresar Direccion" required>
 
               </div>
 
             </div>
 
-             <!-- ENTRADA PARA LA FECHA DE NACIMIENTO -->
+            <!-- ENTRADA PARA LA FECHA DE NACIMIENTO -->
             
             <div class="form-group">
               
@@ -250,16 +178,18 @@ MODAL AGREGAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevaFechaNacimiento" placeholder="Ingresar fecha nacimiento" data-inputmask="'alias': 'yyyy/mm/dd'" data-mask required>
+                <input type="text" class="form-control input-lg" name="nuevaFechaNacimiento" placeholder="Ingresar Fecha de Nacimiento" data-inputmask="'alias':'yyyy/mm/dd'" data-mask required>
 
               </div>
 
             </div>
-  
+
+
           </div>
 
         </div>
 
+           
         <!--=====================================
         PIE DEL MODAL
         ======================================-->
@@ -268,16 +198,16 @@ MODAL AGREGAR CLIENTE
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar cliente</button>
+          <button type="submit" class="btn btn-primary">Guardar Cliente</button>
 
         </div>
 
       </form>
 
-      <?php
+      <?php 
 
-        $crearCliente = new ControladorClientes();
-        $crearCliente -> ctrCrearCliente();
+      $crearCliente = new ControladorClientes();
+      $crearCliente -> ctrCrearCliente();
 
       ?>
 
@@ -287,8 +217,10 @@ MODAL AGREGAR CLIENTE
 
 </div>
 
+
+
 <!--=====================================
-MODAL EDITAR CLIENTE
+MODAL EDITAR USUARIO
 ======================================-->
 
 <div id="modalEditarCliente" class="modal fade" role="dialog">
@@ -307,7 +239,7 @@ MODAL EDITAR CLIENTE
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar cliente</h4>
+          <h4 class="modal-title">Editar Cliente</h4>
 
         </div>
 
@@ -327,13 +259,14 @@ MODAL EDITAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="editarCliente" id="editarCliente" required>
+                <input type="text" class="form-control input-lg" name="editarCliente" id="editarCliente"  required>
                 <input type="hidden" id="idCliente" name="idCliente">
+
               </div>
 
             </div>
 
-            <!-- ENTRADA PARA EL DOCUMENTO ID -->
+            <!-- ENTRADA PARA EL DOCUMENTO -->
             
             <div class="form-group">
               
@@ -355,13 +288,13 @@ MODAL EDITAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                <input type="email" class="form-control input-lg" name="editarEmail" id="editarEmail" required>
+                <input type="email" class="form-control input-lg" name="editarEmail" id="editarEmail"  required>
 
               </div>
 
             </div>
 
-            <!-- ENTRADA PARA EL TELÉFONO -->
+            <!-- ENTRADA PARA EL TELEFONO -->
             
             <div class="form-group">
               
@@ -369,13 +302,13 @@ MODAL EDITAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="editarTelefono" id="editarTelefono" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+                <input type="text" class="form-control input-lg" name="editarTelefono" id="editarTelefono" data-inputmask="'mask':'(999) 999-999'" data-mask required>
 
               </div>
 
             </div>
 
-            <!-- ENTRADA PARA LA DIRECCIÓN -->
+             <!-- ENTRADA PARA LA DIRECCION -->
             
             <div class="form-group">
               
@@ -389,7 +322,7 @@ MODAL EDITAR CLIENTE
 
             </div>
 
-             <!-- ENTRADA PARA LA FECHA DE NACIMIENTO -->
+            <!-- ENTRADA PARA LA FECHA DE NACIMIENTO -->
             
             <div class="form-group">
               
@@ -397,16 +330,18 @@ MODAL EDITAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="editarFechaNacimiento" id="editarFechaNacimiento"  data-inputmask="'alias': 'yyyy/mm/dd'" data-mask required>
+                <input type="text" class="form-control input-lg" name="editarfechaNacimiento" id="editarfechaNacimiento" data-inputmask="'alias':'yyyy/mm/dd'" data-mask required>
 
               </div>
 
             </div>
-  
+
+
           </div>
 
         </div>
 
+           
         <!--=====================================
         PIE DEL MODAL
         ======================================-->
@@ -415,20 +350,19 @@ MODAL EDITAR CLIENTE
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 
         </div>
 
       </form>
 
-      <?php
+       <?php 
 
-        $editarCliente = new ControladorClientes();
-        $editarCliente -> ctrEditarCliente();
+      $editarCliente = new ControladorClientes();
+      $editarCliente -> ctrEditarCliente();
 
       ?>
-
-    
+      
 
     </div>
 
@@ -436,11 +370,10 @@ MODAL EDITAR CLIENTE
 
 </div>
 
-<?php
+<?php 
 
-  $eliminarCliente = new ControladorClientes();
-  $eliminarCliente -> ctrEliminarCliente();
+$eliminarCliente = new ControladorClientes();
+$eliminarCliente -> ctrEliminarCliente();
 
 ?>
-
-
+      

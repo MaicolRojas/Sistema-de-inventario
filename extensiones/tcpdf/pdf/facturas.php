@@ -55,6 +55,7 @@ require_once('tcpdf_include.php');
 
 // create new PDF document
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+ob_clean();
 
 $pdf->startPageGroup();
 
@@ -503,6 +504,8 @@ $pdf->writeHTML($bloque9, false, false, false, false, '');
 /*=====  SALIDA DEL ARCHIVO  ======*/
 
 $pdf->Output('factura.php');
+
+
 
     }
 

@@ -27,9 +27,7 @@ $(".tablaClientes").on("click", ".btnEditarCliente", function(){
 			$("#editarEmail").val(respuesta['email']);
 			$("#editarTelefono").val(respuesta['telefono']);
 			$("#editarDireccion").val(respuesta['direccion']);
-			$("#editarfechaNacimiento").val(respuesta['fecha_nacimiento']);
-
-			
+			$("#editarFechaNacimiento").val(respuesta['fecha_nacimiento']);
 		}
 	})
 })
